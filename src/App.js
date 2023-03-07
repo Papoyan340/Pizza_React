@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Axios from 'axios';
 
 
+
 import { Header } from './Components';
 import { Home, Cart } from './pages';
 
@@ -15,7 +16,7 @@ function App() {
         
         setDataPizza(data.pizzas)
       })
-
+      console.log('render app');
       // fetch('http://localhost:3000/db.json')
       //    .then((response) => response.json())
       //    .then((json) => {

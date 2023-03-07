@@ -44,16 +44,16 @@ function SortPopup({items}) {
                 />
             </svg>
             <b>Сортировка по:</b>
-          <span onClick={togleVisiblePopup}>{items[activeItem]}</span>
+          <span onClick={togleVisiblePopup}>{items[activeItem].name}</span>
         </div>
         {
             visiblePopup && <div className="sort__popup">
               <ul>
                 {
-                  items?.map((el, idx) => <li 
-                    key={`${el}_${idx}`} 
+                  items?.map((obj, idx) => <li 
+                    key={`${obj.type}_${idx}`} 
                     className = {activeItem === idx ? 'active' : ''}
-                    onClick={() => onSelectItem(idx)} >{el}</li>)
+                    onClick={() => onSelectItem(idx)} >{obj.name}</li>)
                 }
               </ul>
           </div>
