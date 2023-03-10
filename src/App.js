@@ -40,6 +40,7 @@ import { setPizzas as setPizzasAction} from './redux/actions/actionsPizza';
 class App extends React.Component {
 
 
+
    componentDidMount() {
       Axios.get('http://localhost:3000/db.json').then(({ data }) => {
         this.props.setPizzas(data.pizzas);
