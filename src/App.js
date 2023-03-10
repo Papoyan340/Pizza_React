@@ -14,6 +14,7 @@ function App() {
         Axios.get('http://localhost:3000/db.json').then(({data}) => {
         
         setDataPizza(data.pizzas)
+        
       })
 
       // fetch('http://localhost:3000/db.json')
@@ -21,6 +22,8 @@ function App() {
       //    .then((json) => {
       //       setDataPizza(json.pizzas);
       //    });
+
+      
    }, []);
 
    return (
