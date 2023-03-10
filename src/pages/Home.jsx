@@ -3,6 +3,7 @@ import React from 'react';
 import { Categories, SortPopup, PizzaBlock } from '../Components';
 
 function Home({ dataPizza }) {
+   
    return (
       <div className="container">
          <div className="content__top">
