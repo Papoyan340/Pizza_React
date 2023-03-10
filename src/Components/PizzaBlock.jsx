@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import classNames from 'classnames';
 import { PropTypes } from 'prop-types';
 
 function PizzaBlock(obj) {
    const { imageUrl, name, price, types, sizes } = obj;
-
+  
    const typeNames = ['тонкое', 'традиционное'];
    const [activeType, setActiveType] = useState(types[0]);
    const onSelectType = (idx) => {
@@ -91,4 +91,4 @@ PizzaBlock.defaultProps = {
 
 
 
-export default PizzaBlock;
+export default memo(PizzaBlock, (prev, next) => JSON.stringify(prev) === JSON.stringify(next) );

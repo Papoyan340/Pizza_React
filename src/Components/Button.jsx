@@ -6,8 +6,8 @@ function Button({children, outline, className}){
     
   
     return (
+        
         <button className={classNames('button', className, {'button--outline' : outline,})}>{children}</button>
-
     )
 }
 

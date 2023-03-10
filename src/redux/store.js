@@ -1,19 +1,8 @@
-import { createStore } from "redux";
 
+import { createStore, } from 'redux';
 
-function counter(state = 0, action){
-    switch(action.type){
-        case 'INCREMENT':
-            return state + 1;
-        case 'DEQREMENT':
-            return state - 1;
-        default:
-            return state    
-    }
-}
+import rootReducer from './reducers';
 
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-
-const store = createStore(counter)
-
-export default store
+export default store;
