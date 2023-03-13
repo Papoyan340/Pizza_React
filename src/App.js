@@ -23,6 +23,7 @@ import { setPizzas } from './redux/actions/actionsPizza';
 //       //    });
 //    }, []);
 
+
 //    return (
 //       <div className="wrapper">
 //          <div className="wrapper">
@@ -37,6 +38,8 @@ import { setPizzas } from './redux/actions/actionsPizza';
 // }
 
 class App extends React.Component {
+
+
 
    componentDidMount() {
       Axios.get('http://localhost:3000/db.json').then(({ data }) => {
