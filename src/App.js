@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Header } from './Components';
 import { Home, Cart } from './pages';
 import store from './redux/store';
-import { setPizzas as setPizzasAction} from './redux/actions/actionsPizza';
+import { setPizzas } from './redux/actions/actionsPizza';
 
 // function App() {
 //    // const [dataPizza, setDataPizza] = useState([]);
@@ -64,10 +64,14 @@ const mapStateToProps = (state) => {
    };
 };
 
-const mapDispatchToProps =(dispatch)=> {
-   return{
-      setPizzas: (items)=> dispatch(setPizzasAction(items))
-   }
+const mapDispatchToProps = {
+   setPizzas,
 }
+
+// const mapDispatchToProps =(dispatch)=> {
+//    return{
+//       setPizzas: (items)=> dispatch(setPizzasAction(items))
+//    }
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
