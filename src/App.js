@@ -1,75 +1,51 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import Axios from 'axios';
-import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import { Header } from './Components';
 import { Home, Cart } from './pages';
-import store from './redux/store';
 import { setPizzas } from './redux/actions/actionsPizza';
+// import store from './redux/store';
 
-// function App() {
-//    // const [dataPizza, setDataPizza] = useState([]);
+function App() {
+   const dispach = useDispatch();
 
-//    useEffect(() => {
-//       Axios.get('http://localhost:3000/db.json').then(({ data }) => {
-//          setDataPizza(data.pizzas);
-//       });
-//       console.log('render app');
-//       // fetch('http://localhost:3000/db.json')
-//       //    .then((response) => response.json())
-//       //    .then((json) => {
-//       //       setDataPizza(json.pizzas);
-//       //    });
-//    }, []);
-
-
-//    return (
-//       <div className="wrapper">
-//          <div className="wrapper">
-//             <Header />
-//             <div className="content">
-//                <Route exact path="/" render={() => <Home dataPizza={dataPizza} />} />
-//                <Route exact path="/cart" component={Cart} />
-//             </div>
-//          </div>
-//       </div>
-//    );
-// }
-
-class App extends React.Component {
-
-
-
-   componentDidMount() {
+   window.test =()=> {
       Axios.get('http://localhost:3000/db.json').then(({ data }) => {
-        this.props.setPizzas(data.pizzas);
+         dispach(setPizzas(data.pizzas));
       });
    }
 
-   render() {
-   
-      return (
-         <div className="wrapper">
-            <Header />
-            <div className="content">
-               <Route exact path="/" render={() => <Home dataPizza={this.props.items} />} />
-               <Route exact path="/cart" component={Cart} />
-            </div>
+   React.useEffect(() => {
+      Axios.get('http://localhost:3000/db.json').then(({ data }) => {
+         dispach(setPizzas(data.pizzas));
+      });
+   }, []);
+
+   return (
+      <div className="wrapper">
+         <Header />
+         <div className="content">
+            <Route exact path="/" component={Home} />
+            <Route exact path="/cart" component={Cart} />
          </div>
-      );
-   }
+      </div>
+   );
 }
 
-const mapStateToProps = (state) => {
-   return {
-      items: state.pizzas.items,
-   };
-};
+export default App;
 
-const mapDispatchToProps = {
-   setPizzas,
-}
+// const mapStateToProps = (state) => {
+//    return {
+//       items: state.pizzas.items,
+//    };
+// };
+
+// const mapDispatchToProps = {
+//    setPizzas,
+// };
 
 // const mapDispatchToProps =(dispatch)=> {
 //    return{
@@ -77,4 +53,4 @@ const mapDispatchToProps = {
 //    }
 // }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
