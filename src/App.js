@@ -1,29 +1,13 @@
 import React from 'react';
-import Axios from 'axios';
 import { Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+
 // import { connect } from 'react-redux';
 
 import { Header } from './Components';
 import { Home, Cart } from './pages';
-import { setPizzas } from './redux/actions/actionsPizza';
-// import store from './redux/store';
+import { fetchPizzas } from './redux/actions/actionsPizza';
 
 function App() {
-   const dispach = useDispatch();
-
-   window.test =()=> {
-      Axios.get('http://localhost:3000/db.json').then(({ data }) => {
-         dispach(setPizzas(data.pizzas));
-      });
-   }
-
-   React.useEffect(() => {
-      Axios.get('http://localhost:3000/db.json').then(({ data }) => {
-         dispach(setPizzas(data.pizzas));
-      });
-   }, []);
-
    return (
       <div className="wrapper">
          <Header />
