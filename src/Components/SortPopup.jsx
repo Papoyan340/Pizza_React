@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const SortPopup = React.memo(function SortPopup({ items }) {
+
    const [visiblePopup, setVisiblePopup] = useState(false);
    const [activeItem, setActiveItem] = useState(0);
    const sortRef = useRef(null);
-  console.log('render SortPopup');
+   console.log('render SortPopup');
+
    const togleVisiblePopup = () => {
       setVisiblePopup((visiblePopup) => (visiblePopup = !visiblePopup));
    };

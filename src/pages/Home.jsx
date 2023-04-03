@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Categories, SortPopup, PizzaBlock } from '../Components';
+import { Categories, SortPopup, PizzaBlock, LoadingPizza} from '../Components';
 import { setCategory } from '../redux/actions/actionsFilter';
 import { fetchPizzas } from '../redux/actions/actionsPizza';
 
@@ -11,21 +11,25 @@ const sortItems = [
    { name: 'алфавиту', tupe: 'alphabet' },
 ];
 
+   
+   
 function Home() {
+   
    const dispatch = useDispatch();
-
-   const { items } = useSelector(({ pizzas }) => {
-      return {
-         items: pizzas.items,
-      };
-   });
-
+   // const { items, isLoaded } = useSelector(({ pizzas }) => {
+   //    return {
+   //       items: pizzas.items,
+   //       isLoaded: pizzas.isLoaded
+   //    };
+   // });
+   const { items, isLoaded } = useSelector(({pizzas}) => pizzas)
+   const {sortBy, category}  = useSelector(({filters}) => filters)
+   
    React.useEffect(() => {
       dispatch(fetchPizzas());
    }, []);
 
    const onSelectCategoru = React.useCallback((idx) => {
-      console.log(idx);
       dispatch(setCategory(idx));
    }, []);
 
@@ -37,8 +41,8 @@ function Home() {
          </div>
 
          <h2 className="content__title">Все пиццы</h2>
-         <div className="content__items">
-            {items && items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
+         <div className="content__items" >
+            {isLoaded ? items.map((obj) => <PizzaBlock key={obj.id} {...obj} />) : Array(12).fill(<LoadingPizza/>)}
          </div>
       </div>
    );

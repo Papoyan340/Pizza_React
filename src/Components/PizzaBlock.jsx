@@ -1,24 +1,30 @@
 import React, { useState, memo } from 'react';
 import classNames from 'classnames';
 import { PropTypes } from 'prop-types';
+// import { LoadingPizza } from "./index";
 
 function PizzaBlock(obj) {
    const { imageUrl, name, price, types, sizes } = obj;
-  
-   const typeNames = ['тонкое', 'традиционное'];
+
    const [activeType, setActiveType] = useState(types[0]);
+   const [activeSizes, setActiveSizes] = useState(sizes[0]);
+   
+   // if (isLoading) {
+   //    return  <LoadingPizza/>
+   // }
+   const typeNames = ['тонкое', 'традиционное'];
    const onSelectType = (idx) => {
       setActiveType(idx);
    };
 
    const availableSizes = [26, 30, 40];
-   const [activeSizes, setActiveSizes] = useState(sizes[0]);
    const onSelectSizes = (idx) => {
       setActiveSizes(idx);
    };
 
    return (
       <div className="pizza-block">
+         {/* <loadingPizzaBlock /> */}
          <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
          <h4 className="pizza-block__title">{name}</h4>
          <div className="pizza-block__selector">
@@ -51,7 +57,7 @@ function PizzaBlock(obj) {
          </div>
          <div className="pizza-block__bottom">
             <div className="pizza-block__price">от {price} ₽</div>
-                     
+
             <div className="button button--outline button--add">
                <svg
                   width="12"
@@ -79,6 +85,7 @@ PizzaBlock.propTypes = {
    price: PropTypes.number.isRequired,
    types: PropTypes.arrayOf(PropTypes.number).isRequired,
    sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+   // isLoading: PropTypes.bool,
 };
 
 PizzaBlock.defaultProps = {
@@ -86,9 +93,8 @@ PizzaBlock.defaultProps = {
    types: [],
    price: 0,
    sizes: [],
-   imageUrl: 'no images'
-}
+   // isLoading: false,
+   imageUrl: 'no images',
+};
 
-
-
-export default memo(PizzaBlock, (prev, next) => JSON.stringify(prev) === JSON.stringify(next) );
+export default memo(PizzaBlock, (prev, next) => JSON.stringify(prev) === JSON.stringify(next));

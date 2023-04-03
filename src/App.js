@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 import { Header } from './Components';
 import { Home, Cart } from './pages';
-import { fetchPizzas } from './redux/actions/actionsPizza';
+
 
 function App() {
    return (
