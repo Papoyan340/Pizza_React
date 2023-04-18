@@ -4,7 +4,7 @@ import ContentLoader from 'react-content-loader';
 function loadingPizza() {
    return (
       <ContentLoader
-         speed={0.7}
+         speed={0.4}
          width={280}
          height={460}
          viewBox="0 0 280 460"
@@ -17,8 +17,6 @@ function loadingPizza() {
          <rect x="124" y="415" rx="16" ry="16" width="145" height="32" />
          <rect x="9" y="415" rx="8" ry="8" width="80" height="32" />
       </ContentLoader>
-
-  
    );
 }
 

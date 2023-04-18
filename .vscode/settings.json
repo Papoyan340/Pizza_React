@@ -1,3 +1,4 @@
 {
-   "reactSnippets.settings.prettierEnabled": true
+   "reactSnippets.settings.prettierEnabled": true,
+   "CodeGPT.query.language": "Russian"
 }

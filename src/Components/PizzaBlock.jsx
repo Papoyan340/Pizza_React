@@ -8,7 +8,7 @@ function PizzaBlock(obj) {
 
    const [activeType, setActiveType] = useState(types[0]);
    const [activeSizes, setActiveSizes] = useState(sizes[0]);
-   
+ 
    // if (isLoading) {
    //    return  <LoadingPizza/>
    // }
