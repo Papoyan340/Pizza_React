@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const SortPopup = React.memo(function SortPopup({activeSortType, items }) {
-
+const SortPopup = React.memo(function SortPopup({ activeSortType, items, onClickSortType }) {
    const [visiblePopup, setVisiblePopup] = useState(false);
+   const activLabel = items.find((el) => el.type === activeSortType).name 
    
    const sortRef = useRef(null);
-  
 
    const togleVisiblePopup = () => {
-   
       setVisiblePopup((visiblePopup) => (visiblePopup = !visiblePopup));
    };
 
@@ -23,14 +21,14 @@ const SortPopup = React.memo(function SortPopup({activeSortType, items }) {
       document.body.addEventListener('click', handleOutsideClick);
    }, []);
 
-   const onSelectItem = (idx) => {
-      // setActiveItem((prev) => (prev = idx));
+   const onSelectItem = (type) => {
+      onClickSortType(type);
       setVisiblePopup(false);
    };
 
    return (
       <div ref={sortRef} className="sort">
-         <div  className="sort__label">
+         <div className="sort__label">
             <svg
                className={visiblePopup ? 'rotated' : ''}
                width="10"
@@ -43,8 +41,8 @@ const SortPopup = React.memo(function SortPopup({activeSortType, items }) {
                   fill="#2C2C2C"
                />
             </svg>
-            <b >Сортировка по:</b>
-            <span onClick={togleVisiblePopup}>{items[activeSortType]}</span>
+            <b>Сортировка по:</b>
+            <span onClick={togleVisiblePopup}>{activLabel}</span>
          </div>
          {visiblePopup && (
             <div className="sort__popup">
@@ -52,8 +50,8 @@ const SortPopup = React.memo(function SortPopup({activeSortType, items }) {
                   {items?.map((obj, idx) => (
                      <li
                         key={`${obj.type}_${idx}`}
-                        className={activeSortType === idx ? 'active' : ''}
-                        onClick={() => onSelectItem(idx)}>
+                        className={activeSortType === obj.type ? 'active' : ''}
+                        onClick={() => onSelectItem(obj.type)}>
                         {obj.name}
                      </li>
                   ))}

@@ -4,7 +4,7 @@ const initialState = {
 };
 
 const filters = (state = initialState, action) => {
-   if (action.type === 'SET_SORT-BY') {
+   if (action.type === 'SER_SORT_BY') {
       return {
          ...state,
          sortBy: action.payload,

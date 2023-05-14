@@ -5,10 +5,15 @@ export const setLoaded = (payload) => ({
    payload,
 });
 
-export const fetchPizzas = () => (dispatch) => {
-   dispatch(setLoaded(false))
+export const fetchPizzas = (category, sortBy) => (dispatch) => {
+   console.log(sortBy);
+   dispatch(setLoaded(false));
 
-   Axios.get('http://localhost:3001/pizzas').then(({ data }) => {
+   Axios.get(
+      `http://localhost:3001/pizzas?${
+         category !== null ? `category=${category}` : ''
+      }&_sort=${sortBy}&_order=desc`,
+   ).then(({ data }) => {
       dispatch(setPizzas(data));
    });
 };
